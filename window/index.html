@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Captivated</title>
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="A simple, no bullshit keylogger">
+
+		
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/body.css">
+		<link rel="stylesheet" href="css/checkbox.css">
+		
+		
+		<script defer src="js/main.js"></script>
+		<script defer src="js/config.js"></script>
+	</head>
+	<body>
+		<h1 id="logo">Captivated</h1>
+		<div id="logo-text">A simple, no bullshit keylogger</div>
+		<div id="table-cont">
+			<table>
+				<tr>
+					<td>
+						<div id="controls">
+							<label>Track keyups
+								<input type="checkbox" id="track-keyups">
+								<span class="checkmark"></span>
+							</label>
+
+							<br />
+
+							<label>Log timestamps
+								<input type="checkbox" id="log-timestamps">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+					</td>
+					<td>
+						<button id="log" class="logging">Start</button>
+					</td>
+				</tr>
+			</table>
+			<br /><br /><br />
+			<input id="output" type="file" webkitdirectory style="display: none;">
+			<button id="changeDirectory" onclick="directoryChooser.click()">Change log directory</button>
+		</div>
+	</body>
+</html>
