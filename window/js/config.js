@@ -1,16 +1,16 @@
 trackKeyups.addEventListener("change", e => {
 	if(!initialConfig)
-		updateConfig(trackKeyups.checked, logTimestamps.checked, (directoryChooser.files) ? directoryChooser.files[0].path.split("\\").reverse().slice(1).reverse().join("\\") : outputDirectory);
+		updateConfig(trackKeyups.checked, logTimestamps.checked, (!!directoryChooser.files[0]) ? directoryChooser.files[0].path.split("\\").reverse().slice(1).reverse().join("\\") : outputDirectory);
 });
 
 logTimestamps.addEventListener("change", e => {
 	if(!initialConfig)
-		updateConfig(trackKeyups.checked, logTimestamps.checked, (directoryChooser.files) ? directoryChooser.files[0].path.split("\\").reverse().slice(1).reverse().join("\\") : outputDirectory);
+		updateConfig(trackKeyups.checked, logTimestamps.checked, (!!directoryChooser.files[0]) ? directoryChooser.files[0].path.split("\\").reverse().slice(1).reverse().join("\\") : outputDirectory);
 });
 
 directoryChooser.addEventListener("change", e => {
 	if(!initialConfig)
-		updateConfig(trackKeyups.checked, logTimestamps.checked, (directoryChooser.files) ? directoryChooser.files[0].path.split("\\").reverse().slice(1).reverse().join("\\") : outputDirectory);
+		updateConfig(trackKeyups.checked, logTimestamps.checked, (!!directoryChooser.files[0]) ? directoryChooser.files[0].path.split("\\").reverse().slice(1).reverse().join("\\") : outputDirectory);
 });
 
 

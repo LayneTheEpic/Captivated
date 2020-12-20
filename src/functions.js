@@ -14,8 +14,8 @@ function pad(num, zeroes = 2) {
 
 
 function getKey(e) {
-	//console.log(e.rawcode, String.fromCharCode(e.rawcode))
-	return String.fromCharCode(e.rawcode)
+	if(lookupTable[e.rawcode]) {return lookupTable[e.rawcode]}
+	else {return String.fromCharCode(e.rawcode)}
 }
 
 

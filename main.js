@@ -1,15 +1,15 @@
 const {BrowserWindow, app, ipcMain} = require("electron");
 const iohook = require("iohook");
-const fs = require("fs");
+const fs = require("fs-extra");
 
 
-const {timestamp, pad, getKey} = require("./src/functions");
+const {createStream, endStream, append, outputJSConfig} = require("./src/output");
+const {timestamp, getKey} = require("./src/functions");
 
 
 let keyLogging = false;
 let config;
 
-let stream;
 
 let window;
 
@@ -19,6 +19,8 @@ app.whenReady().then(() => {
 		webPreferences: {
 			nodeIntegration: true
 		},
+
+		contextIsolation: false,
 
 		show: false
 	});
@@ -45,15 +47,15 @@ ipcMain.on("set logging state", (e, val) => {
 ipcMain.on("config update", (e, val) => {
 	config = val;
 
-	console.log(val);
-
-	let fixedOutputDirectory = config.output_directory.split("\\").join("\\\\")	
+	let fixedOutputDirectory = config.output_directory.split("\\").join("/");
 
 	let formattedConfig = `{\n\t"track_keyups": ${config.track_keyups},\n\t"log_timestamps": ${config.log_timestamps},\n\t"output_directory": \"${fixedOutputDirectory}\"\n}`;
 
 	fs.writeFileSync("json/config.json", formattedConfig, err => {
 		if(err) {return console.error(err)}
 	});
+
+	outputJSConfig(config);
 });
 
 
@@ -62,30 +64,16 @@ ipcMain.once("send config", e => {
 		if(err) {return console.error(err)}
 		else {return data};
 	});
+
 	
 	config = JSON.parse(config);
 	
+	outputJSConfig(config);
+
 	window.webContents.send("returned config", config);
 });
 
 
-
-
-
-//#region file shit
-function createStream() {
-	let d = new Date();
-	stream = fs.createWriteStream(`${config.output_directory}/${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}-${pad(d.getMinutes())}-${pad(d.getSeconds())}.txt`, {flags: "a"});
-}
-
-function endStream() {
-	stream.end();
-}
-
-function append(data) {
-	stream.write(data + "\n");
-}
-//#endregion file shit
 
 
 
