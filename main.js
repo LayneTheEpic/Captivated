@@ -28,7 +28,7 @@ app.whenReady().then(() => {
 	window.loadFile("window/index.html");
 	//window.webContents.openDevTools();
 
-	//window.removeMenu();
+	window.removeMenu();
 
 	window.maximize();
 
@@ -49,7 +49,7 @@ ipcMain.on("config update", (e, val) => {
 
 	let fixedOutputDirectory = config.output_directory.split("\\").join("/");
 
-	let formattedConfig = `{\n\t"track_keyups": ${config.track_keyups},\n\t"log_timestamps": ${config.log_timestamps},\n\t"output_directory": \"${fixedOutputDirectory}\"\n}`;
+	let formattedConfig = `{\n\t"track_keyups": ${config.track_keyups},\n\t"log_timestamps": ${config.log_timestamps},\n\t"output_directory": \"${config.output_directory}\"\n}`;
 
 	fs.writeFileSync("json/config.json", formattedConfig, err => {
 		if(err) {return console.error(err)}
@@ -59,7 +59,7 @@ ipcMain.on("config update", (e, val) => {
 });
 
 
-ipcMain.once("send config", e => {
+ipcMain.on("send config", e => {
 	config = fs.readFileSync("json/config.json", "utf8", (err, data) => {
 		if(err) {return console.error(err)}
 		else {return data};

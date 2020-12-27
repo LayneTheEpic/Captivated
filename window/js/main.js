@@ -4,12 +4,13 @@ const trackKeyups = document.getElementById("track-keyups");
 const logTimestamps = document.getElementById("log-timestamps");
 const logButton = document.getElementById("log");
 const directoryChooser = document.getElementById("output");
+const directoryText = document.getElementById("output-location");
 
 
 let keyLogging = false;
 let initialConfig = true;
-let outputDirectory = "output";
 
+let outputDirectory = "";
 
 logButton.addEventListener("click", () => {
 	keyLogging = !keyLogging;
@@ -36,3 +37,8 @@ logButton.addEventListener("click", () => {
 
 	ipcRenderer.send("set logging state", keyLogging);
 });
+
+
+function changeDirectory() {
+	if(!keyLogging) {directoryChooser.click()}
+}

@@ -19,7 +19,7 @@
 	<body>
 		<h1 id="logo">Captivated</h1>
 		<div id="logo-text">A simple, no bullshit keylogger</div>
-		<div id="table-cont">
+		<div id="table-cont" class="flex-center-column">
 			<table>
 				<tr>
 					<td>
@@ -43,8 +43,11 @@
 				</tr>
 			</table>
 			<br /><br />
-			<input id="output" type="file" webkitdirectory style="display: none;">
-			<input id="text-field" value=""><button id="changeDirectory" onclick="directoryChooser.click()">Change log directory</button>
+			<div class="flex-center-column">
+				<input id="output" type="file" webkitdirectory style="display: none;">
+				<button id="change-directory" onclick="changeDirectory()">Change log directory</button><br />
+				<span id="output-location"></span>
+			</div>
 		</div>
 	</body>
 </html>
