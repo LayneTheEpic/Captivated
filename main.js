@@ -120,7 +120,8 @@ octokit.request("GET /repos/{owner}/{repo}/releases", {
 	)
 )
 .then(async() => {
-	await new Promise(res => setTimeout(res, 1000)); // sleep
+	await new Promise(res => setTimeout(res, 1000));
+	// sleep because I don't know how to guarantee the file downloaded
 
 
 })
