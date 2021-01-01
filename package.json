@@ -11,6 +11,8 @@
 	"author": "Layne Ogden",
 	"license": "MIT",
 	"dependencies": {
+		"@octokit/core": "^3.2.4",
+		"download": "^8.0.0",
 		"fs-extra": "^9.0.1",
 		"iohook": "^0.7.2"
 	},
